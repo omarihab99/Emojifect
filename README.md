@@ -1,4 +1,4 @@
-# Emojifect
+# Emojifect (under development)
 
 Emojifect is a wrapper React Component that decorate your test with emojis with multiple animations. The idea was inspired by message effects from Messenger like this:
 
