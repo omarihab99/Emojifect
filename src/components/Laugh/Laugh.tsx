@@ -1,9 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import './Laugh.css'; // Move CSS into an external file or include it inline
+import React, { useState, useEffect } from "react";
+import "./Laugh.css";
+interface Props {
+  children: React.ReactNode;
+}
 
-const Laugh: React.FC = () => {
-  const [emojis, setEmojis] = useState<Array<{ id: number; left: string; top: string; fontSize: string; animationDuration: string, rotate: string }>>([]);
-  let textWdith = 0;
+const Laugh: React.FC<Props> = ({ children }) => {
+  const [emojis, setEmojis] = useState<
+    Array<{
+      id: number;
+      left: string;
+      top: string;
+      fontSize: string;
+      animationDuration: string;
+      rotate: string;
+    }>
+  >([]);
+  const textWdith = 0;
   useEffect(() => {
     const generateEmojis = (count: number) => {
       const emojiArray = Array.from({ length: count }, (_, index) => ({
@@ -17,12 +29,12 @@ const Laugh: React.FC = () => {
       setEmojis(emojiArray);
     };
 
-    generateEmojis(textWdith/10 ? textWdith/10 : 5); // Generate 20 emojis
+    generateEmojis(textWdith / 10 ? textWdith / 10 : 5); // Generate 20 emojis
   }, [textWdith]);
 
   return (
     <div className="laugh-container">
-      <p ref={(node) => (textWdith = node?.offsetWidth || 10)}>This is so funny.</p>
+      {children}
       {emojis.map((emoji) => (
         <span
           key={emoji.id}
